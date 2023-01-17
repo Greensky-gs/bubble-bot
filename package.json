@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "prettier": "^2.8.3"
+  },
+  "scripts": {
+    "lint": "prettier -w src"
   }
 }
