@@ -19,6 +19,6 @@
   },
   "scripts": {
     "lint": "prettier -w src",
-    "launch": "yarn lint && yarn tsc -b && node ."
+    "launch": "yarn tsc -b && node ."
   }
 }
