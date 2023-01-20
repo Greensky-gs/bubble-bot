@@ -11,8 +11,8 @@ export type DefaultQueryResult = {
 export type QueryResult<T> = T extends DefaultQueryResult ? DefaultQueryResult : T[];
 
 export type Owner = {
-    user_id: string
-}
+    user_id: string;
+};
 export enum Tables {
     Owners = 'bot-owners'
 }
