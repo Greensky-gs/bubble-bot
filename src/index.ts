@@ -1,11 +1,13 @@
 import { AmethystClient } from 'amethystjs';
+import { Partials } from 'discord.js';
 import { config } from 'dotenv';
 
 config();
 
 export const client = new AmethystClient(
     {
-        intents: ['Guilds', 'GuildMembers', 'GuildMessages', 'MessageContent']
+        intents: ['Guilds', 'GuildMembers', 'GuildMessages', 'MessageContent'],
+        partials: [Partials.Channel, Partials.Message]
     },
     {
         token: process.env.token,

