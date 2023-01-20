@@ -9,3 +9,10 @@ export type DefaultQueryResult = {
     changedRows: number;
 };
 export type QueryResult<T> = T extends DefaultQueryResult ? DefaultQueryResult : T[];
+
+export type Owner = {
+    user_id: string
+}
+export enum Tables {
+    Owners = 'bot-owners'
+}
