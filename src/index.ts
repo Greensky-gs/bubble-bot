@@ -17,7 +17,7 @@ export const client = new AmethystClient(
         debug: true,
         botName: 'uta',
         botNameWorksAsPrefix: true,
-        prefix: 'g!',
+        prefix: '+',
         strictPrefix: false,
         waitForDefaultReplies: {
             user: `Vous ne pouvez pas interagir avec ce message`,
