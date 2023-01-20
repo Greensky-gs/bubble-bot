@@ -16,3 +16,5 @@ export type Owner = {
 export enum Tables {
     Owners = 'bot_owners'
 }
+export type partnerSubCommandOpt = 'help' | 'ajouter' | 'retirer' | 'liste'
+export type ElementType<T extends any[]> = T extends Array<infer U> ? U : never;
