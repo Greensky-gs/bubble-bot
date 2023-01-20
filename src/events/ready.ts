@@ -16,7 +16,7 @@ export default new AmethystEvent('ready', async (client) => {
     client.coins.start();
 
     client.user.setActivity({
-        name: `Bubble`,
+        name: `Bubble \uD83E\uDEE7`,
         type: ActivityType.Watching
     });
     client.user.setStatus('idle');
