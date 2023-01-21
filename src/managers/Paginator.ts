@@ -1,12 +1,12 @@
-import { Paginator, paginatorOptions } from "dsc-pagination"
-import { cancel } from "../utils/contents"
+import { Paginator, paginatorOptions } from 'dsc-pagination';
+import { cancel } from '../utils/contents';
 
 export const paginator = (options: paginatorOptions) => {
     return new Paginator({
         ...options,
         modal: {
-            title: "Page",
-            fieldName: "numéro de page"
+            title: 'Page',
+            fieldName: 'numéro de page'
         },
         displayPages: 'footer',
         interactionNotAllowedContent: {
@@ -17,11 +17,11 @@ export const paginator = (options: paginatorOptions) => {
             return {
                 content: `Veuillez saisir un numéro de page entre **1** et **${max}**`,
                 ephemeral: true
-            }
+            };
         },
         cancelContent: {
             embeds: [cancel()]
         },
         numeriseLocale: 'fr'
-    })
-}
+    });
+};
