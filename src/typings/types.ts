@@ -24,6 +24,7 @@ export type PersonnalVoice = {
     channel_id: string;
 };
 export type partnerSubCommandOpt = 'help' | 'ajouter' | 'retirer' | 'liste';
+export type levelSubcommandOpt = 'help' | 'ajouter';
 export type ElementType<T extends unknown[]> = T extends Array<infer U> ? U : never;
 
 export type level = {

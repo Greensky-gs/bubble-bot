@@ -1,6 +1,7 @@
 import { Client, Collection } from 'discord.js';
 import type { CacheType, level } from '../typings/types';
 import { query } from '../utils/database';
+import config from '../utils/config';
 
 export class LevelManager {
     readonly client: Client;
@@ -21,6 +22,29 @@ export class LevelManager {
         });
 
         return value;
+    }
+    public addLevels(levels: number, guild: string, user: string) {
+        const simul = this.getData(guild, user);
+        const target = simul.level + levels;
+
+        while (simul.level < target) {
+            simul.total++;
+            simul.messages++;
+
+            if (simul.messages === simul.objectif) {
+                simul.level++;
+                simul.messages = 0;
+
+                simul.objectif = this.upgrader(simul.objectif);
+
+                this.client.coins.addCoins({
+                    user_id: user,
+                    coins: config('levelIncrement')(simul.level)
+                });
+            }
+        }
+
+        this.setData(guild, user, simul);
     }
     public serverData(g: string): level[] {
         return this.cache.filter((x) => x.guild_id === g);

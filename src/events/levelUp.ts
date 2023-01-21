@@ -11,7 +11,7 @@ export default new AmethystEvent('levelUp', (message, level) => {
 
     member.roles.add(roles.map((x) => x.role));
     message.client.coins.addCoins({
-        coins: level.level * 100,
+        coins: config('levelIncrement')(level.level),
         user_id: message.author.id
     });
 });

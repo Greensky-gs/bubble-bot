@@ -6,3 +6,6 @@ export const resize = (str: string, length?: number) => {
 
     return `${str.substring(0, max - 2)}...`;
 };
+export const random = ({ min = 0, max = 100 }: { max?: number; min?: number }) => {
+    return Math.floor(Math.random() * max - min) + min;
+};

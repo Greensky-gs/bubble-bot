@@ -43,7 +43,7 @@ const params = {
             level: 50
         }
     ],
-    levelIncrement: (x: number) => x * 5
+    levelIncrement: (x: number) => x * 100
 };
 export default <T extends keyof typeof params>(param: T): (typeof params)[T] => {
     return params[param];
