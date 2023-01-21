@@ -8,7 +8,7 @@ export default new AmethystCommand({
     name: 'partner',
     description: 'Fait un partenariat',
     preconditions: [owner, _delete, userMention]
-}).setMessageRun(({ message, options }) => {
+}).setMessageRun(({ message }) => {
     message.channel
         .send({
             content: `🔔 \`Notification:\` <@&1037837822540926996>`,
