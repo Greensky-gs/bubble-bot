@@ -1,17 +1,16 @@
 import { AmethystCommand } from "amethystjs";
 import owner from "../preconditions/owner";
 import _delete from "../preconditions/delete";
-import { ElementType, partnerSubCommandOpt } from "../typings/types";
+import { partnerSubCommandOpt } from "../typings/types";
 import { AdminsList, helpEmbed } from "../utils/contents";
-import { EmbedBuilder } from "discord.js";
-import { paginator } from "../managers/Paginator";
+import config from "../utils/config";
 
 export default new AmethystCommand({
     name: 'admins',
     description: "Gère la liste des administrateurs",
     preconditions: [owner, _delete]
 }).setMessageRun(({ message, options }) => {
-    if (message.author.id !== '911526216341798913') return;
+    if (message.author.id !== config('ownerId')) return;
 
     const cmd = (options.first ?? 'help') as partnerSubCommandOpt;
 
