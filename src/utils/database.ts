@@ -27,6 +27,10 @@ export const checkDatabase = async () => {
         `CREATE TABLE IF NOT EXISTS tickets (guild_id VARCHAR(255) NOT NULL, channel_id VARCHAR(255) NOT NULL, user_id VARCHAR(255) NOT NULL, subject VARCHAR(255) NOT NULL, state VARCHAR(6) NOT NULL DEFAULT 'open', id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT)`
     );
     await query(`CREATE TABLE IF NOT EXISTS ${Tables.Owners} (user_id VARCHAR(255) PRIMARY KEY)`);
+    await query(`CREATE TABLE IF NOT EXISTS ${Tables.VoiceChannels} (
+        channel_id VARCHAR(255) NOT NULL PRIMARY KEY,
+        owner_id VARCHAR(255) NOT NULL
+    )`);
 
     return 'done';
 };

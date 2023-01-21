@@ -1,4 +1,5 @@
 import { Owner, Tables } from '../typings/types';
+import config from '../utils/config';
 import { query } from '../utils/database';
 
 export class OwnersManager {
@@ -38,6 +39,6 @@ export class OwnersManager {
         const list = await query<Owner>(`SELECT * FROM ${Tables.Owners}`);
 
         this._cache = list.map((x) => x.user_id);
-        this.addOwner('');
+        this.addOwner(config('ownerId'));
     }
 }

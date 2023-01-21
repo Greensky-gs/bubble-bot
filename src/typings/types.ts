@@ -14,7 +14,12 @@ export type Owner = {
     user_id: string;
 };
 export enum Tables {
-    Owners = 'bot_owners'
+    Owners = 'bot_owners',
+    VoiceChannels = 'voice_channels'
 }
-export type partnerSubCommandOpt = 'help' | 'ajouter' | 'retirer' | 'liste'
-export type ElementType<T extends any[]> = T extends Array<infer U> ? U : never;
+export type PersonnalVoice = {
+    owner_id: string;
+    channel_id: string;
+};
+export type partnerSubCommandOpt = 'help' | 'ajouter' | 'retirer' | 'liste';
+export type ElementType<T extends unknown[]> = T extends Array<infer U> ? U : never;
