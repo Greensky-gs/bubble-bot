@@ -29,3 +29,13 @@ const addFooter = (user: User, embed: EmbedBuilder) => {
 export const helpEmbed = (command: string, user: User) => {
     return addFooter(user, new EmbedBuilder().setTitle(`Commande ${command}`).setColor('Yellow'));
 };
+export const VoiceChannelLimitEdited = (user: User, limit: number) => {
+    return addFooter(
+        user,
+        new EmbedBuilder()
+
+            .setTitle('Limite modifiée')
+            .setDescription(`La limite de votre salon a été configurée sur **${numerize(limit)}**`)
+            .setColor('#2bfafa')
+    );
+};
