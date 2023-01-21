@@ -1,5 +1,6 @@
 import { EmbedBuilder, User } from 'discord.js';
 import { numerize } from './toolbox';
+import { level } from '../typings/types';
 
 export const PartnerEmbed = (user: User) => {
     return new EmbedBuilder()
@@ -39,3 +40,7 @@ export const VoiceChannelLimitEdited = (user: User, limit: number) => {
             .setColor('#2bfafa')
     );
 };
+export const levelUp = (level: level) => `・୨<a:B_aBoyLove:1036229515602567219>୧・ <@${
+    level.user_id
+}> **félicitations, tu as atteint le niveau ${numerize(level.level)} !**・୨<a:B_aRainbowSparkles:1036229393699323914>୧
+・୨<:B_RemWink:1036229532576927774>୧・Continues à être actif, tu es un bon exemple !`;

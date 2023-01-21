@@ -1,3 +1,5 @@
+import { Collection } from 'discord.js';
+
 export type DefaultQueryResult = {
     fieldCount: number;
     affectedRows: number;
@@ -23,3 +25,13 @@ export type PersonnalVoice = {
 };
 export type partnerSubCommandOpt = 'help' | 'ajouter' | 'retirer' | 'liste';
 export type ElementType<T extends unknown[]> = T extends Array<infer U> ? U : never;
+
+export type level = {
+    guild_id: string;
+    user_id: string;
+    messages: number;
+    level: number;
+    total: number;
+    objectif: number;
+};
+export type CacheType = Collection<string, Collection<string, level>>;

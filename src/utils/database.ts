@@ -31,6 +31,13 @@ export const checkDatabase = async () => {
         channel_id VARCHAR(255) NOT NULL PRIMARY KEY,
         owner_id VARCHAR(255) NOT NULL
     )`);
+    await query(`CREATE TABLE IF NOT EXISTS levels (
+        guild_id VARCHAR(255) NOT NULL,
+        user_id VARCHAR(255) NOT NULL,
+        messages INTEGER(255) NOT NULL DEFAULT '0',
+        total INTEGER(255) NOT NULL DEFAULT '0',
+        level INTEGER(255) NOT NULL DEFAULT '0',
+        objectif INTEGER(255) NOT NULL DEFAULT '100')`);
 
     return 'done';
 };
