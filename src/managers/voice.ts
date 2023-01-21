@@ -6,14 +6,24 @@ import { resize } from '../utils/toolbox';
 import { DebugImportance } from 'amethystjs';
 
 export class VoiceManager {
-    private channel: VoiceChannel;
-    private client: Client;
-    private cache: Collection<string, PersonnalVoice> = new Collection();
+    private _channel: VoiceChannel;
+    private _client: Client;
+    private _cache: Collection<string, PersonnalVoice> = new Collection();
 
     constructor(client: Client) {
-        this.client = client;
+        this._client = client;
 
         this.start();
+    }
+
+    public get client() {
+        return this._client;
+    }
+    public get cache() {
+        return this._cache;
+    }
+    public get channel() {
+        return this._channel;
     }
 
     private async start() {
@@ -21,7 +31,7 @@ export class VoiceManager {
         this.setEvent();
     }
     private setEvent() {
-        this.client.on('voiceStateUpdate', async (before, after) => {
+        this._client.on('voiceStateUpdate', async (before, after) => {
             if (
                 (!before.channel || !this.isChannel(before.channel)) &&
                 after.channel &&
@@ -38,7 +48,7 @@ export class VoiceManager {
                 if (!channel) return console.log(`${DebugImportance.Critical} Un salon personnel n'a pas pu être crée`);
                 await after.setChannel(channel).catch(() => {});
 
-                this.cache.set(after.member.id, {
+                this._cache.set(after.member.id, {
                     owner_id: after.member.id,
                     channel_id: channel.id
                 });
@@ -53,14 +63,14 @@ export class VoiceManager {
                 this.isUserOwned(after.member.id, before.channel.id)
             ) {
                 before.channel.delete().catch(() => {});
-                this.cache.delete(after.member.id);
+                this._cache.delete(after.member.id);
                 query(`DELETE FROM ${Tables.VoiceChannels} WHERE owner_id='${after.member.id}'`);
             }
         });
     }
 
     public isUserOwned(user: string, channel: string) {
-        const userData = this.cache.get(user);
+        const userData = this._cache.get(user);
         if (!userData) return false;
 
         return userData.channel_id === channel;
@@ -69,12 +79,12 @@ export class VoiceManager {
      * @param limit Integer greatest than 1
      */
     public editUserLimit(channelId: string, limit: number) {
-        const channel = this.channel.guild.channels.cache.get(channelId) as VoiceChannel;
+        const channel = this._channel.guild.channels.cache.get(channelId) as VoiceChannel;
 
         channel.setUserLimit(limit).catch(() => {});
     }
     private async fetchChannel() {
-        const channel = (await this.client.channels.fetch(config('createVoiceChannelId'), {
+        const channel = (await this._client.channels.fetch(config('createVoiceChannelId'), {
             allowUnknownGuild: true,
             force: true
         })) as VoiceChannel;
@@ -82,15 +92,15 @@ export class VoiceManager {
         if (!channel) {
             return console.log(`[!!] Salon vocal non trouvé`);
         }
-        this.channel = channel;
-        return this.channel;
+        this._channel = channel;
+        return this._channel;
     }
     private async fillCache() {
         const result = await query<PersonnalVoice>(`SELECT * FROM ${Tables.VoiceChannels}`);
 
-        this.cache.clear();
+        this._cache.clear();
         result.forEach((x) => {
-            this.cache.set(x.owner_id, x);
+            this._cache.set(x.owner_id, x);
         });
         return true;
     }
