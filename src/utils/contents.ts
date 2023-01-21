@@ -1,6 +1,7 @@
-import { EmbedBuilder, User } from 'discord.js';
+import { EmbedBuilder, GuildMember, User } from 'discord.js';
 import { numerize } from './toolbox';
 import { level } from '../typings/types';
+import config from './config';
 
 export const PartnerEmbed = (user: User) => {
     return new EmbedBuilder()
@@ -44,3 +45,8 @@ export const levelUp = (level: level) => `・୨<a:B_aBoyLove:103622951560256721
     level.user_id
 }> **félicitations, tu as atteint le niveau ${numerize(level.level)} !**・୨<a:B_aRainbowSparkles:1036229393699323914>୧
 ・୨<:B_RemWink:1036229532576927774>୧・Continues à être actif, tu es un bon exemple !`;
+export const welcomeContent = (member: GuildMember) => {
+    return {
+        content: `<@&${config('welcomer')}> Souhaitez la bienvenue à <@${member.id}>`
+    }
+}

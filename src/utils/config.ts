@@ -43,7 +43,10 @@ const params = {
             level: 50
         }
     ],
-    levelIncrement: (x: number) => x * 100
+    levelIncrement: (x: number) => x * 100,
+    joinChannel: '1059474223141240883',
+    welcomer: '1037850270647992320',
+    memberCountChannel: '1038822217854750850'
 };
 export default <T extends keyof typeof params>(param: T): (typeof params)[T] => {
     return params[param];
