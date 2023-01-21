@@ -47,9 +47,32 @@ export class VoiceManager {
                     `INSERT INTO ${Tables.VoiceChannels} ( channel_id, owner_id ) VALUES ('${channel.id}', '${after.member.id}')`
                 );
             }
+            if (
+                before.channel &&
+                (!after?.channel || before.channel.id !== after.channel.id) &&
+                this.isUserOwned(after.member.id, before.channel.id)
+            ) {
+                before.channel.delete().catch(() => {});
+                this.cache.delete(after.member.id);
+                query(`DELETE FROM ${Tables.VoiceChannels} WHERE owner_id='${after.member.id}'`);
+            }
         });
     }
 
+    public isUserOwned(user: string, channel: string) {
+        const userData = this.cache.get(user);
+        if (!userData) return false;
+
+        return userData.channel_id === channel;
+    }
+    /**
+     * @param limit Integer greatest than 1
+     */
+    public editUserLimit(channelId: string, limit: number) {
+        const channel = this.channel.guild.channels.cache.get(channelId) as VoiceChannel;
+
+        channel.setUserLimit(limit).catch(() => {});
+    }
     private async fetchChannel() {
         const channel = (await this.client.channels.fetch(config('createVoiceChannelId'), {
             allowUnknownGuild: true,
