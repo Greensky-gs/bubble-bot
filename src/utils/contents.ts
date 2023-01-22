@@ -1,7 +1,8 @@
-import { EmbedBuilder, GuildMember, User } from 'discord.js';
+import { Client, EmbedBuilder, GuildMember, User } from 'discord.js';
 import { numerize } from './toolbox';
 import { level } from '../typings/types';
 import config from './config';
+import { AmethystCommand } from 'amethystjs';
 
 export const PartnerEmbed = (user: User) => {
     return new EmbedBuilder()
@@ -99,4 +100,23 @@ export const ticketDeletion = (userId: string, user: User) => {
         .setTitle('Suppression de ticket')
         .setDescription(`Le ticket de <@${userId}> va être supprimé par <@${user.id}> dans quelques secondes`)
         .setColor('#ff0000');
+};
+export const helpPage = (commands: AmethystCommand[], type: 'slash' | 'prefix', client: Client) => {
+    return new EmbedBuilder()
+        .setTitle("Page d'aide")
+        .setDescription(
+            `${
+                type === 'prefix'
+                    ? `Voici la liste des commandes d'administration du bot`
+                    : `Voici la liste de mes commandes :`
+            }\n${commands
+                .map(
+                    (cmd) =>
+                        `\`${type === 'slash' ? '/' : client.configs.prefix}${cmd.options.name}\` ${
+                            cmd.options.description
+                        }`
+                )
+                .join('\n')}`
+        )
+        .setColor('Yellow');
 };
