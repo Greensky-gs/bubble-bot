@@ -39,5 +39,8 @@ export const checkDatabase = async () => {
         level INTEGER(255) NOT NULL DEFAULT '0',
         objectif INTEGER(255) NOT NULL DEFAULT '100')`);
 
+    await query(
+        `CREATE TABLE IF NOT EXISTS ${Tables.birthdays} ( user_id VARCHAR(255) NOT NULL PRIMARY KEY, day VARCHAR(2) NOT NULL DEFAULT '00', month VARCHAR(2) NOT NULL DEFAULT '00', year VARCHAR(4) NOT NULL DEFAULT '----' )`
+    );
     return 'done';
 };
