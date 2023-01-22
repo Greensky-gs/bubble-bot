@@ -6,7 +6,7 @@ import config from './config';
 export const PartnerEmbed = (user: User) => {
     return new EmbedBuilder()
         .setTitle(`Échange publicitaire`)
-        .setDescription(`Merci à <@${user.id}> d'avori fait un échange avec nous !`)
+        .setDescription(`Merci à <@${user.id}> d'avoir fait un échange avec nous !`)
         .setColor('#2bfafa');
 };
 export const cancel = () => {
@@ -47,6 +47,20 @@ export const levelUp = (level: level) => `・୨<a:B_aBoyLove:103622951560256721
 ・୨<:B_RemWink:1036229532576927774>୧・Continues à être actif, tu es un bon exemple !`;
 export const welcomeContent = (member: GuildMember) => {
     return {
-        content: `<@&${config('welcomer')}> Souhaitez la bienvenue à <@${member.id}>`
-    }
-}
+        content: `<@&${config('welcomer')}> Souhaitez la bienvenue à <@${member.id}>`,
+        embeds: [
+            new EmbedBuilder()
+                .setTitle('Bienvenue !')
+                .setDescription(
+                    `─────✧ Welcome <@${member.id}> ✧─────
+<a:B_aBoyLove:1036229515602567219>⊱ Je t'invite à aller prendre tes rôles : <#1066495051376631820>
+<a:B_aAnyaYay:1036229414599544903>⊱ N'hésite pas à te présenter : <#1066495051376631820>
+‿︵‿︵ʚMerci d'avoir rejoint !`
+                )
+                .setImage(
+                    'https://images-ext-1.discordapp.net/external/XInuBEQE0ctjKt2IVxhdracJ6OxQrpXrmMuyEMXsenc/https/media.tenor.com/dtGytZeu-TMAAAAC/makoto-anime.gif'
+                )
+                .setTimestamp()
+        ]
+    };
+};
