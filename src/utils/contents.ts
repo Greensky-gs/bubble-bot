@@ -64,3 +64,39 @@ export const welcomeContent = (member: GuildMember) => {
         ]
     };
 };
+export const ticketPanel = () => {
+    return new EmbedBuilder()
+        .setAuthor({
+            name: 'Vous voulez contacter le staff ?',
+            iconURL: 'attachment://mail.png'
+        })
+        .setDescription(
+            `Via le **menu déroulant** ci-dessous, **choisissez** ce qui vous convient le **mieux**.\n\nSoyez \`clair\`, \`gentil\` et \`agréable\` lors de **votre demande**\nN'hésitez pas à \`préciser\` **votre demande** en envoyant des \`fichiers\`, des \`liens\`...\n\n<:8581_KannaHello:1048696892176998493> Le __**support**__ est de \`7:00\` à \`21:00\`\n\`Les heures hors délai doivent être respectées, merci de ne pas mentionner un utilisateur pendant ces heures\``
+        );
+};
+export const ticketMessage = (user: User, sujbect: string) => {
+    return new EmbedBuilder()
+        .setTitle(sujbect)
+        .setDescription(
+            `<@${user.id}> Voici votre ticket\nLe staff vous répondra sous peu\n\n:warning: Merci de ne mentionner personne entre les heures de disponibilité de l'équipe`
+        )
+        .setColor('Yellow');
+};
+export const ticketClosed = (userId: string, user: User) => {
+    return new EmbedBuilder()
+        .setTitle('Fermeture de ticket')
+        .setDescription(`Le ticket de <@${userId}> a été fermé par <@${user.id}>`)
+        .setColor('#ff0000');
+};
+export const ticketReopened = (userId: string, user: User) => {
+    return new EmbedBuilder()
+        .setTitle('Réouverture de ticket')
+        .setDescription(`Le ticket de <@${userId}> a été réouvert par <@${user.id}>`)
+        .setColor('#00ff00');
+};
+export const ticketDeletion = (userId: string, user: User) => {
+    return new EmbedBuilder()
+        .setTitle('Suppression de ticket')
+        .setDescription(`Le ticket de <@${userId}> va être supprimé par <@${user.id}> dans quelques secondes`)
+        .setColor('#ff0000');
+};

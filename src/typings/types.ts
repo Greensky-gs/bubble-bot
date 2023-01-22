@@ -36,3 +36,13 @@ export type level = {
     objectif: number;
 };
 export type CacheType = Collection<string, Collection<string, level>>;
+export enum ComponentIds {
+    TicketRecrutes = 'tickets-recrutement',
+    TicketProblem = 'tickets-probleme',
+    TicketTrade = 'tickets-échanges',
+    TicketOther = 'ticket-other',
+    TicketPanel = 'ticket-panel',
+    TicketClose = 'closeticket',
+    TicketReopen = 'reopenticket',
+    TicketDelete = 'ticketdelete'
+}

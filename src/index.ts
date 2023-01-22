@@ -14,6 +14,7 @@ export const client = new AmethystClient(
         commandsFolder: './dist/commands',
         eventsFolder: './dist/events',
         preconditionsFolder: './dist/preconditions',
+        buttonsFolder: './dist/buttons',
         debug: true,
         botName: 'uta',
         botNameWorksAsPrefix: true,
@@ -30,5 +31,6 @@ export const client = new AmethystClient(
 client.start({
     loadCommands: true,
     loadEvents: true,
-    loadPreconditions: true
+    loadPreconditions: true,
+    loadButtons: true
 });
