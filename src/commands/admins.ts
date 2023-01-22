@@ -43,6 +43,10 @@ export default new AmethystCommand({
     } else if (cmd === 'retirer') {
         const user = checkUser();
         if (!user) return;
+        if (user.id === config('ownerId'))
+            return message.channel
+                .send(`:x: Vous ne pouvez pas vous retirer de la liste des administrateurs`)
+                .catch(() => {});
 
         if (!message.client.owners.isOwner(user.id))
             return message.channel.send(`${user.username} n'est pas un administrateur Bubble`).catch(() => {});
